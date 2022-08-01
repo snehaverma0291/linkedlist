@@ -1,0 +1,123 @@
+#include<iostream>
+using namespace std;
+
+
+//program to delete node 
+#include<iostream>
+#include<complex>
+#include<stack>
+#include<queue>
+using namespace std;
+
+struct node 
+{ 
+	int data; 
+  struct node *next; 
+};
+
+node *reverse_list(struct node *head) 
+{
+	   stack<node*>st;
+	   
+	   struct node *tmp = NULL;
+	   struct node *head_new = NULL;
+	 
+	  /* Allocate memory */
+	   tmp = (node*)malloc(sizeof(struct node));
+	   head_new = (node*)malloc(sizeof(struct node));
+	   
+	    while(head!=NULL) 
+	     {
+	     	//cout<<head->data<<endl;
+	     	st.push(head) ;
+	     	head = head->next;
+	     
+	     }
+	     head_new=st.top();
+	     head_new->next=tmp;
+	     while(!st.empty()) 
+	     {
+	     
+	     	tmp=st.top();
+	     	//cout<<tmp->data<<endl;
+	     	st.pop();
+	     	if(!st.empty()) 
+	     	{
+	     	   
+	     	   tmp->next=st.top() ;
+	     	}
+	     	
+	     	
+	     }
+	  return head_new;
+}
+
+int main()
+{
+	/* Initialize nodes */ 
+		struct node *head=NULL; 
+	 struct node *one = NULL;
+	 struct node *two = NULL; 
+	 struct node *three = NULL;
+	 struct node *four = NULL;
+	 struct node *five = NULL;
+	 
+	  /* Allocate memory */
+	  one = (node*)malloc(sizeof(struct node));  
+	  two =  (node*)malloc(sizeof(struct node));
+	  three = (node*)malloc(sizeof(struct node));
+	  four = (node*)malloc(sizeof(struct node));
+	  five = (node*)malloc(sizeof(struct node));
+	  
+	  
+	   /* Assign data values */
+	    one->data = 1;
+	    two->data = 2; 
+	    three->data=3; 
+	    four->data=4;
+	    five->data=5;
+	    
+	    /* Connect nodes */
+	     one->next = two; 
+	     two->next = three;
+	     three->next = four ; 
+	     four->next = five;
+	     /* Save address of first node in head */       
+	       head = one;
+	       
+	       
+	 struct node *itr = NULL;
+	 
+	  /* Allocate memory */
+	  itr = (node*)malloc(sizeof(struct node));     
+	         
+	    struct node *reverse= NULL;
+	 
+	  /* Allocate memory */
+	  reverse = (node*)malloc(sizeof(struct node));     
+	   
+	  reverse=reverse_list(head) ;
+	  
+	  cout<<reverse->data<<endl;
+	  cout<<reverse->next->data<<endl;
+	  cout<<reverse->next->next->data<<endl;
+	  cout<<reverse->next->next->next->data<<endl;
+	  cout<<reverse->next->next->next->next->data<<endl;
+	  itr=reverse;
+	 
+	  while(itr!=NULL) 
+	  {
+	  	cout<<itr->data<<endl;
+	  	itr=itr->next;
+	  }
+	  
+	  	
+	  	
+	  
+	  
+	  //cout<<ans->next->data<<endl;
+	   
+	       
+ 
+}
+
