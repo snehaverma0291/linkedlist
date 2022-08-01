@@ -1,0 +1,149 @@
+
+//program to add two linked listnnode 
+#include<iostream>
+#include<complex>
+#include<stack>
+#include<queue>
+using namespace std;
+
+struct node 
+{ 
+	int data; 
+  struct node *next; 
+};
+
+node *add_number(struct node *head, struct node *head2) 
+{
+	   stack<int>st;
+	   stack<int>st2;
+	   queue<int>q;
+	   int carry=0;
+	  int res=0;
+	  struct node *temp =NULL;
+	  struct node *temp2 =NULL;
+	  
+	  temp= (node*)malloc(sizeof(struct node));
+	  temp2= (node*)malloc(sizeof(struct node));
+	  temp=head;
+	  temp2=head2;
+	  while(temp!= NULL && temp2!=NULL) 
+	  {
+	  	st.push(temp->data);
+	  	st2.push(temp2->data);
+	  	//cout<<temp->data<<" "<<temp2->data<<endl;
+	  
+	  	temp=temp->next;
+	  	temp2=temp2->next;
+	  	
+	  }
+	  
+	  struct node *sum_list[10] ={NULL};
+	       
+	     for (int i=0;i<10;i++) 
+	     {
+	     	sum_list[i]= (node*)malloc(sizeof(struct node));
+	     	}  
+	     
+	  int cnt=0;
+	   while(head!=NULL && head2!=NULL) 
+	   {
+	   	
+	   	//res= head->data+head2->data+carry;
+	   	res=st.top() + st2.top() +carry;
+	   	carry=0;
+	   	//cout<<st.top()<<" "<<st2.top()<<endl;
+	   	if(res>=10) 
+	   	{
+	   		res=res-10;
+	   		carry=1;
+	   	}
+	   	sum_list[cnt]->data=res;
+	   sum_list[cnt]->next= sum_list[cnt+1];
+	   	head=head->next;
+	   	head2=head2->next;
+	   	cnt=cnt+1;
+	   	res=0;
+	   	st.pop();
+	   	st2.pop();
+	   }
+	 
+	 return sum_list[0];
+	 
+}
+
+int main()
+{
+	/* Initialize nodes */ 
+		struct node *head=NULL; 
+	 struct node *one = NULL;
+	 struct node *two = NULL; 
+	 struct node *three = NULL;
+	 struct node *four = NULL;
+	 struct node *five = NULL;
+	 
+	  /* Allocate memory */
+	  one = (node*)malloc(sizeof(struct node));  
+	  two =  (node*)malloc(sizeof(struct node));
+	  three = (node*)malloc(sizeof(struct node));
+	  four = (node*)malloc(sizeof(struct node));
+	  five = (node*)malloc(sizeof(struct node));
+	  
+	  
+	   /* Assign data values */
+	    one->data = 1;
+	    two->data = 2; 
+	    three->data=3; 
+	    four->data=4;
+	    five->data=2;
+	    
+	    /* Connect nodes */
+	     one->next = two; 
+	     two->next = three;
+	     three->next = four ; 
+	     four->next = five ;
+	     /* Save address of first node*/ 
+	       head = one;  
+	       struct node *head2=NULL;
+	       struct node *first=NULL;
+	       struct node *second=NULL;
+	       struct node *third=NULL;
+	       struct node *fourth=NULL;
+	       struct node *fifth=NULL;    
+	      head2 = (node*)malloc(sizeof(struct node));  
+	  first =  (node*)malloc(sizeof(struct node));
+	  second = (node*)malloc(sizeof(struct node));
+	  third = (node*)malloc(sizeof(struct node));
+	  fourth = (node*)malloc(sizeof(struct node));
+	  
+		fifth = (node*)malloc(sizeof(struct node));  
+	  
+	  
+	    first->data = 2;
+	    second->data = 3; 
+	    third->data=4;
+	    fourth->data=5;
+	    fifth->data=6;
+	  
+	   
+	  
+	  first->next= second;
+	  second->next = third;
+	  third->next=fourth;
+	  fourth->next = fifth;
+	   
+	   head2=first;
+	         
+	    struct node *ans = NULL;
+	 
+	  /* Allocate memory */
+	  ans = (node*)malloc(sizeof(struct node));     
+	   
+	  ans= add_number(head,head2) ;
+	  cout<<ans->data<<endl;
+	  cout<<ans->next->data<<endl;
+	  cout<<ans->next->next->data<<endl;
+	  
+	  cout<<ans->next->next->next->data<<endl;
+	     cout<<ans->next->next->next->next->data<<endl;
+ 
+}
