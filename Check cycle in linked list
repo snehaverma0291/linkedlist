@@ -1,0 +1,125 @@
+#include<iostream>
+#include<map>
+using namespace std;
+
+
+//program to delete node 
+#include<iostream>
+#include<complex>
+#include<stack>
+#include<queue>
+using namespace std;
+
+struct node 
+{ 
+	int data; 
+  struct node *next; 
+};
+
+struct node* cycle_check(struct node *head) 
+{
+	   map<node*,int> mp;
+	   int flag=0;
+	   
+	   struct node *tmp = NULL;
+	   struct node *tmp2 = NULL;
+	 
+	  /* Allocate memory */
+	   tmp = (node*)malloc(sizeof(struct node));
+	  tmp2 = (node*)malloc(sizeof(struct node));
+	   tmp=head;
+	   tmp2=head;
+	  
+	      
+	   while(tmp!=NULL) 
+	   {
+	   	mp.insert({tmp,tmp->data});
+	   	cout<<tmp<<" "<<tmp->data<<endl;
+	   	tmp=tmp->next;
+	   	auto itr = mp.find(tmp);
+	   	//cout<<itr->first<<" "<<itr->second<<endl;
+	   	if(itr!=mp.end()) 
+	   	{
+	   		cout<<"cycle found at "<<tmp->data<<endl;
+	   		return tmp;
+	   		
+	   		break;
+	   	}
+	   	//tmp=tmp->next;
+	    
+	   } 
+	    
+	     
+	  return tmp;
+}
+
+int main()
+{
+	/* Initialize nodes */ 
+		struct node *head=NULL; 
+	 struct node *one = NULL;
+	 struct node *two = NULL; 
+	 struct node *three = NULL;
+	 struct node *four = NULL;
+	 struct node *five = NULL;
+	 
+	  /* Allocate memory */
+	  one = (node*)malloc(sizeof(struct node));  
+	  two =  (node*)malloc(sizeof(struct node));
+	  three = (node*)malloc(sizeof(struct node));
+	  four = (node*)malloc(sizeof(struct node));
+	  five = (node*)malloc(sizeof(struct node));
+	  
+	  
+	   /* Assign data values */
+	    one->data = 1;
+	    two->data = 2; 
+	    three->data=3; 
+	    four->data=2;
+	    five->data=1;
+	    
+	    /* Connect nodes */
+	     one->next = two; 
+	     two->next = three;
+	     three->next = four ; 
+	     four->next = three;
+	     /* Save address of first node in head */       
+	       head = one;
+	       
+	       
+	 struct node *itr = NULL;
+	 
+	  /* Allocate memory */
+	  itr = (node*)malloc(sizeof(struct node));     
+	         
+	    struct node *cycle_node= NULL;
+	 
+	  /* Allocate memory */
+	  cycle_node = (node*)malloc(sizeof(struct node));     
+	   
+	cycle_node= cycle_check(head) ;
+	  
+	  cout<<" there is cycle in linked list at data node " <<cycle_node->data<<endl;
+	  /*
+	  cout<<reverse->next->data<<endl;
+	  cout<<reverse->next->next->data<<endl;
+	  cout<<reverse->next->next->next->data<<endl;
+	  cout<<reverse->next->next->next->next->data<<endl;
+	  itr=reverse;
+	 
+	  while(itr!=NULL) 
+	  {
+	  	cout<<itr->data<<endl;
+	  	itr=itr->next;
+	  }
+	  */
+	  	
+	  	
+	  
+	  
+	  //cout<<ans->next->data<<endl;
+	   
+	       
+ 
+}
+
